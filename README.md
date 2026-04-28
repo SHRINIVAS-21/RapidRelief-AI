@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # RapidRelief-AI
 =======
 <div align="center">
@@ -22,3 +23,6 @@ View your app in AI Studio: https://ai.studio/apps/b6a69b90-57e9-48dd-8259-8eaa3
 3. Run the app:
    `npm run dev`
 >>>>>>> 3be8708 (Initial commit)
+=======
+# RapidRelief-AI
+>>>>>>> 37d232212db1ee5500a296f6ecf5b15cfe58d53a
