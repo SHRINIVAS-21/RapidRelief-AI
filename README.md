@@ -1,8 +1,8 @@
-🚑 RapidRelief AI
+##🚑 RapidRelief AI
 
 AI-powered emergency assistance system that provides real-time guidance when every second counts.
 
-🧠 Overview
+##🧠 Overview
 
 RapidRelief AI is an intelligent emergency response platform designed to assist users during critical situations. It leverages AI, real-time data, and automation to provide instant guidance, connect users to emergency services, and help make life-saving decisions.
 
@@ -10,7 +10,7 @@ RapidRelief AI is an intelligent emergency response platform designed to assist 
 🔹 Intelligent AI decision-making
 🔹 Instant connection to emergency services
 
-🚨 Problem Statement
+##🚨 Problem Statement
 
 In emergencies, people often:
 
@@ -20,26 +20,26 @@ Face delays in reaching the right help
 
 Solution: RapidRelief AI provides real-time intelligent assistance to reduce response time and improve outcomes.
 
-⚡ Key Features
-🤖 AI Assistant
+##⚡ Key Features
+##🤖 AI Assistant
 Conversational AI guiding users step-by-step
-📍 Location Tracking
+##📍 Location Tracking
 Real-time GPS for accurate emergency response
-⚡ Real-Time Processing
+##⚡ Real-Time Processing
 Instant analysis and response
-🔐 Secure Authentication
+##🔐 Secure Authentication
 Firebase/Clerk-based login system
-☁️ Cloud Deployment
+##☁️ Cloud Deployment
 Scalable and reliable infrastructure
-🧠 Intelligent Decision Engine
+##🧠 Intelligent Decision Engine
 AI agents evaluate and act autonomously
-🔄 How It Works
+##🔄 How It Works
 User launches app in emergency
 Distress signal is triggered
 AI analyzes situation (context + severity)
 Provides step-by-step guidance
 Connects to emergency services
-🏗️ System Architecture
+##🏗️ System Architecture
 Frontend (Next.js + TypeScript)
         ↓
 Authentication (Clerk / Firebase)
@@ -51,7 +51,7 @@ AI Layer (Google Gemini)
 Database (Firebase / Supabase)
         ↓
 External Services (Mapbox, Twilio)
-🛠️ Tech Stack
+#3🛠️ Tech Stack
 Layer	Technology
 Frontend	React / Next.js
 Backend	Node.js / Express
@@ -61,36 +61,36 @@ Auth	Clerk / Firebase
 Maps	Mapbox
 Communication	Twilio
 Language	TypeScript
-📱 UI Components
-📊 Dashboard
-🚨 Emergency Button (One-tap trigger)
-💬 AI Chat Interface
-🗺️ Live Map Tracking
-🚀 Future Roadmap
-📱 Mobile App (iOS & Android)
-🎙️ Voice AI (Hands-free control)
-📞 Auto Emergency Calls
-🏥 Hospital Integration
-⌚ IoT Sensor Integration
-🎯 Unique Value
+##📱 UI Components
+##📊 Dashboard
+##🚨 Emergency Button (One-tap trigger)
+##💬 AI Chat Interface
+##🗺️ Live Map Tracking
+##🚀 Future Roadmap
+##📱 Mobile App (iOS & Android)
+##🎙️ Voice AI (Hands-free control)
+##📞 Auto Emergency Calls
+##🏥 Hospital Integration
+##⌚ IoT Sensor Integration
+#3🎯 Unique Value
 Not just an app — real-time AI agent system
 Personalized emergency responses
 Combines AI + automation + real-time data
-👨‍💻 Author
+##👨‍💻 Author
 
 Shrinivas Reddy
 BTech Robotics & Automation
 Passionate about AI, startups, and building impactful tech
 
-🌍 Mission
+##🌍 Mission
 
 “Real-time intelligence for every emergency.”
 
-📌 Contribution
+##📌 Contribution
 
 Contributions are welcome!
 Feel free to fork the repo and submit a pull request.
 
-⭐ Support
+##⭐ Support
 
 If you like this project, give it a ⭐ on GitHub!
