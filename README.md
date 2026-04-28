@@ -1,28 +1,96 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# RapidRelief-AI
-=======
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+🚑 RapidRelief AI
 
-# Run and deploy your AI Studio app
+AI-powered emergency assistance system that provides real-time guidance when every second counts.
 
-This contains everything you need to run your app locally.
+🧠 Overview
 
-View your app in AI Studio: https://ai.studio/apps/b6a69b90-57e9-48dd-8259-8eaa313a6a61
+RapidRelief AI is an intelligent emergency response platform designed to assist users during critical situations. It leverages AI, real-time data, and automation to provide instant guidance, connect users to emergency services, and help make life-saving decisions.
 
-## Run Locally
+🔹 Real-time step-by-step guidance
+🔹 Intelligent AI decision-making
+🔹 Instant connection to emergency services
 
-**Prerequisites:**  Node.js
+🚨 Problem Statement
 
+In emergencies, people often:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
->>>>>>> 3be8708 (Initial commit)
-=======
-# RapidRelief-AI
->>>>>>> 37d232212db1ee5500a296f6ecf5b15cfe58d53a
+Panic and make poor decisions
+Lack immediate guidance
+Face delays in reaching the right help
+
+Solution: RapidRelief AI provides real-time intelligent assistance to reduce response time and improve outcomes.
+
+⚡ Key Features
+🤖 AI Assistant
+Conversational AI guiding users step-by-step
+📍 Location Tracking
+Real-time GPS for accurate emergency response
+⚡ Real-Time Processing
+Instant analysis and response
+🔐 Secure Authentication
+Firebase/Clerk-based login system
+☁️ Cloud Deployment
+Scalable and reliable infrastructure
+🧠 Intelligent Decision Engine
+AI agents evaluate and act autonomously
+🔄 How It Works
+User launches app in emergency
+Distress signal is triggered
+AI analyzes situation (context + severity)
+Provides step-by-step guidance
+Connects to emergency services
+🏗️ System Architecture
+Frontend (Next.js + TypeScript)
+        ↓
+Authentication (Clerk / Firebase)
+        ↓
+Backend (Node.js + Express)
+        ↓
+AI Layer (Google Gemini)
+        ↓
+Database (Firebase / Supabase)
+        ↓
+External Services (Mapbox, Twilio)
+🛠️ Tech Stack
+Layer	Technology
+Frontend	React / Next.js
+Backend	Node.js / Express
+AI	Google Gemini
+Database	Firebase / Supabase
+Auth	Clerk / Firebase
+Maps	Mapbox
+Communication	Twilio
+Language	TypeScript
+📱 UI Components
+📊 Dashboard
+🚨 Emergency Button (One-tap trigger)
+💬 AI Chat Interface
+🗺️ Live Map Tracking
+🚀 Future Roadmap
+📱 Mobile App (iOS & Android)
+🎙️ Voice AI (Hands-free control)
+📞 Auto Emergency Calls
+🏥 Hospital Integration
+⌚ IoT Sensor Integration
+🎯 Unique Value
+Not just an app — real-time AI agent system
+Personalized emergency responses
+Combines AI + automation + real-time data
+👨‍💻 Author
+
+Shrinivas Reddy
+BTech Robotics & Automation
+Passionate about AI, startups, and building impactful tech
+
+🌍 Mission
+
+“Real-time intelligence for every emergency.”
+
+📌 Contribution
+
+Contributions are welcome!
+Feel free to fork the repo and submit a pull request.
+
+⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
