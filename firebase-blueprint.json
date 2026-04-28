@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "Incident": {
+      "title": "Incident Report",
+      "description": "An emergency incident reported by a user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "videoUrl": { "type": "string", "format": "uri" },
+        "thumbnailUrl": { "type": "string", "format": "uri" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "verified", "alert_sent", "rejected"] },
+        "confidenceScore": { "type": "number" },
+        "reportCount": { "type": "integer" },
+        "type": { "type": "string", "enum": ["fire", "flood", "accident", "medical", "other"] },
+        "description": { "type": "string" },
+        "reporterId": { "type": "string" },
+        "reporterName": { "type": "string" }
+      },
+      "required": ["latitude", "longitude", "timestamp", "status", "type", "reporterId"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "User account information.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "role": { "type": "string", "enum": ["citizen", "responder", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/incidents/{incidentId}": {
+      "schema": "Incident",
+      "description": "Collection of emergency incident reports."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and settings."
+    }
+  }
+}

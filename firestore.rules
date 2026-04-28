@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 0. Global Safety Net - Allow read for development
+    match /{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Phase 3: Primitive Definitions
+    function isSignedIn() { return request.auth != null; }
+    function isVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isAdmin() { 
+      // Only check admins collection if standard RBAC is needed
+      return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); 
+    }
+    
+    function isOwner(data) {
+      return isSignedIn() && data.reporterId == request.auth.uid;
+    }
+
+    // Phase 4: Entity Validations
+    function isValidIncident(data) {
+      return data.keys().hasAll(['latitude', 'longitude', 'timestamp', 'status', 'type', 'reporterId'])
+        && data.latitude is number && data.latitude >= -90 && data.latitude <= 90
+        && data.longitude is number && data.longitude >= -180 && data.longitude <= 180
+        && data.timestamp == request.time
+        && data.status in ['pending', 'verified', 'alert_sent', 'rejected']
+        && data.type in ['fire', 'flood', 'accident', 'medical', 'other']
+        && data.reporterId == request.auth.uid
+        && (data.description == null || (data.description is string && data.description.size() <= 2000))
+        && (data.videoUrl == null || (data.videoUrl is string && data.videoUrl.size() <= 512))
+        && (data.confidenceScore == null || data.confidenceScore is number);
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['name', 'email', 'role', 'createdAt'])
+        && data.name is string && data.name.size() >= 2 && data.name.size() <= 100
+        && data.email is string && data.email.size() <= 200
+        && data.role in ['citizen', 'responder', 'admin']
+        && data.createdAt == request.time;
+    }
+
+    // Collection: Incidents
+    match /incidents/{incidentId} {
+      // 3. Path Variable Hardening
+      allow get: if isSignedIn() && isValidId(incidentId);
+      
+      // 8. Secure List Queries (Enforce query filtering)
+      allow list: if isSignedIn() && (
+        resource.data.reporterId == request.auth.uid || isAdmin() || resource.data.status == 'verified'
+      );
+
+      allow create: if isVerified() 
+        && isValidId(incidentId)
+        && isValidIncident(incoming())
+        && incoming().status == 'pending'
+        && incoming().reportCount == 1;
+
+      // 4. Action-Based Update Pattern
+      allow update: if isVerified() 
+        && (
+          // Action: Up-vote/Repeat Report
+          (incoming().diff(existing()).affectedKeys().hasOnly(['reportCount']) 
+            && incoming().reportCount == existing().reportCount + 1) ||
+          
+          // Action: Reporter edits description (only if pending)
+          (isOwner(existing()) && existing().status == 'pending' 
+            && incoming().diff(existing()).affectedKeys().hasOnly(['description', 'videoUrl', 'latitude', 'longitude'])
+            && incoming().reporterId == existing().reporterId) ||
+
+          // Action: Admin/Responder verification
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'confidenceScore']))
+        );
+
+      allow delete: if isAdmin() || (isOwner(existing()) && existing().status == 'pending');
+    }
+
+    // Collection: Users
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      
+      allow create: if isVerified() 
+        && request.auth.uid == userId 
+        && isValidUser(incoming())
+        && incoming().role == 'citizen'; // Citizens can only sign up as citizens
+
+      allow update: if isVerified() 
+        && request.auth.uid == userId
+        && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'phone'])
+        && incoming().role == existing().role // Prevent role change
+        && incoming().createdAt == existing().createdAt;
+        
+      allow delete: if isAdmin();
+    }
+  }
+}

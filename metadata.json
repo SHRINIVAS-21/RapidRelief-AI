@@ -1,0 +1,14 @@
+{
+  "name": "RapidRelief AI",
+  "description": "Real-time emergency detection and alerting system using AI and community-driven video reports.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "AI Video Analysis",
+    "Real-time Mapping",
+    "Emergency Notifications"
+  ]
+}
